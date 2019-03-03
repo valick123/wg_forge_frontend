@@ -28,7 +28,7 @@ const detailsBlock = (info) => {
                 cells[c].appendChild(showDetails);
 
                 let detailes = document.createElement('div');
-                detailes.className = 'user-detailes';
+                detailes.className = 'user-details';
 
                 let birthDay = document.createElement('p');
                 birthDay.innerText = `Birthday: ${birthdayDateConver(info[r].company_info.birthday)}`;
@@ -106,7 +106,16 @@ const userInfo = (users, companies) => {
 const userDetails = (users, companies) => {
 
     detailsBlock(userInfo(users, companies));
-    // let table = document.querySelector('table');
-    // table.addEventListener('click', showInformation());
+    let table = document.querySelector('table');
+    table.addEventListener('click', (e) => {
+        let target = e.target;
+
+        if (target.classList.contains('show_details')) {
+            if (target.nextSibling.classList.contains('user-details')) {
+                target.nextSibling.classList.toggle('show');
+            }
+        }
+    })
+    console.log(table);
 }
 export default userDetails;
