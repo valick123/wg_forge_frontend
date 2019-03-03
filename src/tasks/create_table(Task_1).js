@@ -8,9 +8,7 @@ const cardNumber = (number) => {
 }
 const dateConvert = (dateCode) => {
     let date = new Date(dateCode * 1000);
-    let year = date.getFullYear();
-    let mounth = date.getMonth();
-    let day = date.getDate();
+
     let hour = date.getHours();
     let dayTime = null
     if (hour > 12) {
@@ -19,17 +17,15 @@ const dateConvert = (dateCode) => {
     } else {
         dayTime = 'AM';
     }
-    let min = date.getMinutes();
-    let sec = date.getSeconds();
-    let convertedDate = `${day}/${mounth}/${year},  ${hour}:${min}:${sec} ${dayTime}`;
+    let convertedDate = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()},  ${hour}:${date.getMinutes()}:${date.getSeconds()} ${dayTime}`;
     return convertedDate;
 
 
 }
 const tableData = (body, orders) => {
-    let rows = body.children;//-строки таблицы
+    let rows = body.children;
     for (let currentRow = 0; currentRow < rows.length; currentRow++) {
-        let cells = rows[currentRow].children;//-ячейки таблицы
+        let cells = rows[currentRow].children;
 
         for (let currentCell = 0; currentCell < cells.length; currentCell++) {
             if (currentCell === 0) {
@@ -73,6 +69,6 @@ const create_order_table = (orders) => {
     }
 
     tableData(tbody, orders);
-    dateConvert(orders[0].created_at);
 }
-export default create_order_table; 
+
+export default create_order_table;
