@@ -55,7 +55,47 @@ const tableData = (body, orders) => {
     }
 }
 const create_order_table = (orders) => {
-    const tbody = document.querySelector('tbody');
+    let table = document.createElement('table');
+    let tHead = document.createElement('thead');
+    let tBody = document.createElement('tbody');
+    let tHeadRow = document.createElement('tr');
+    tHead.appendChild(tHeadRow);
+    table.appendChild(tHead);
+    table.appendChild(tBody);
+    let app = document.querySelector('#app');
+    app.appendChild(table);
+    for (let j = 0; j < 7; j++) {
+        let tHeadData = document.createElement('th');
+        if (j == 0) {
+            tHeadData.innerText = 'Transaction ID';
+            tHeadData.dataset.infoType = tHeadData.innerText;
+        }
+        if (j == 1) {
+            tHeadData.innerText = 'User Info';
+            tHeadData.dataset.infoType = tHeadData.innerText;
+        }
+        if (j == 2) {
+            tHeadData.innerText = 'Order Date';
+            tHeadData.dataset.infoType = tHeadData.innerText;
+        }
+        if (j == 3) {
+            tHeadData.innerText = 'Order Amount';
+            tHeadData.dataset.infoType = tHeadData.innerText;
+        }
+        if (j == 4) {
+            tHeadData.innerText = 'Card Number';
+            tHeadData.dataset.infoType = tHeadData.innerText;
+        }
+        if (j == 5) {
+            tHeadData.innerText = 'Card Type';
+            tHeadData.dataset.infoType = tHeadData.innerText;
+        }
+        if (j == 6) {
+            tHeadData.innerText = 'Location';
+            tHeadData.dataset.infoType = tHeadData.innerText;
+        }
+        tHeadRow.appendChild(tHeadData);
+    }
     for (let i = 0; i < orders.length; i++) {
         let row = document.createElement('tr');
         row.setAttribute('id', `order_${orders[i].id}`);
@@ -64,11 +104,11 @@ const create_order_table = (orders) => {
             row.appendChild(td);
         }
 
-        tbody.appendChild(row);
+        tBody.appendChild(row);
 
     }
 
-    tableData(tbody, orders);
+    tableData(tBody, orders);
 }
 
 export default create_order_table;

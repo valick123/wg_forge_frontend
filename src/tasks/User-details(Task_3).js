@@ -112,10 +112,10 @@ const userDetails = (users, companies) => {
 
         if (target.classList.contains('show_details')) {
             if (target.nextSibling.classList.contains('user-details')) {
+                e.preventDefault();
                 target.nextSibling.classList.toggle('show');
             }
         }
     })
-    console.log(table);
 }
 export default userDetails;
