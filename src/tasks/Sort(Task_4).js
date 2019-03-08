@@ -107,13 +107,14 @@ const sortData = (cellIndex, infotype) => {
 }
 const sortTable = () => {
     let table = document.querySelector('table');
+    let mark = document.createElement('span');
+    mark.innerHTML = "&#8595";
     table.addEventListener('click', function (e) {
         let target = e.target;
         if (target.tagName !== 'TH') {
             return;
         }
-        let mark = document.createElement('span');
-        mark.innerHTML = "&#8595";
+
         if (target.lastChild == mark) {
             target.removeChild(mark);
         } else {
