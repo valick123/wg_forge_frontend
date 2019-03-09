@@ -5,22 +5,55 @@
     <meta charset="UTF-8">
     <title>WG Forge Test</title>
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         table {
             text-align: center;
+            border-collapse: collapse;
+            margin: 0 auto;
+            background-color: #fafafa;
 
         }
 
         td,
         th {
-            border: 1px solid black;
+            border: 1px dotted black;
+            padding: 10px;
+        }
+
+
+
+        th:hover {
+            cursor: pointer;
         }
 
         a {
             display: block;
+            text-decoration: none;
         }
+
+        input {
+            display: block;
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .show_details {
+            border: 2px solid#7c7b7b;
+            padding: 3px;
+            border-radius: 5px;
+            background-color: #bdbdbd;
+
+
+        }
+
+
 
         .user-details {
             display: none;
+
         }
 
         .show {

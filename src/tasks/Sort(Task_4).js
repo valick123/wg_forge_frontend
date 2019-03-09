@@ -10,33 +10,6 @@ const sortData = (cellIndex, infotype) => {
             };
             break;
         case 'Order Date':
-
-            // compare = (rowA, rowB) => {
-            //     let timeAndDate = rowA.cells[cellIndex].innerText.split(',');
-            //     let date = timeAndDate[0];
-            //     date = date.split('/')
-            //     let time = timeAndDate[1];
-            //     time = time.split('')
-            //     let dayTime = time[time.length - 2] + time[time.length - 1];
-            //     time.pop()
-            //     time.pop()
-            //     time = time.join('');
-            //     time = time.split(':');
-            //     for (let d = 0; d < date.length; d++) {
-            //         date[d] = +date[d];
-            //     }
-            //     for (let t = 0; t < time.length; t++) {
-            //         time[t] = +time[t];
-
-            //     }
-            //     time.push(dayTime)
-            //     if (time[time.length - 1] == 'PM') {
-            //         time[0] += 12;
-            //     }
-            //     time.splice(-1, 1)
-            //     console.log(date, '   ', time);
-
-            // }
             compare = (rowA, rowB) => {
                 if (rowA.cells[cellIndex].innerText.toLowerCase() > rowB.cells[cellIndex].innerText.toLowerCase()) {
                     return 1;
