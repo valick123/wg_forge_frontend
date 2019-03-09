@@ -39,11 +39,12 @@ const createStatisticsBlock = () => {
 const getStatisticsData = () => {
     let tbody = document.querySelector('tbody');
     let tbodyRows = tbody.children;
-    let ordersTotal = null;
+    let ordersTotal = 0;
     let medianArr = [];
-    let median = null
-    let averageMen = null;
-    let averageWomen = null;
+    let median = 0;
+    let averageMen = 0;
+    let averageWomen = 0;
+    let averageAmount = 0;
 
     for (let i = 0; i < tbodyRows.length; i++) {
         let tbodyCells = tbodyRows[i].children;
@@ -65,9 +66,19 @@ const getStatisticsData = () => {
     }
 
     medianArr.sort((a, b) => a - b);
-    let averageAmount = ordersTotal / 2;
-    if (medianArr.length % 2 == 0) {
+
+    if (medianArr.length == 1) {
+        averageAmount = ordersTotal;
+    }
+    else {
+        averageAmount = ordersTotal / 2
+    }
+
+    if (medianArr.length == 1) {
+        median = medianArr[0];
+    } else if (medianArr.length % 2 == 0) {
         median = (medianArr[medianArr.length / 2] + medianArr[(medianArr.length) / 2 + 1]) / 2;
+
     } else {
         median = medianArr[(medianArr.length - 1) / 2 + 1];
     }
@@ -75,13 +86,10 @@ const getStatisticsData = () => {
     return {
         OrderCount: tbodyRows.length,
         OrdersTotal: +ordersTotal.toFixed(2),
-        Median: +median.toFixed(2),
+        Median: median,
         AverageAmount: +averageAmount.toFixed(2),
         AverageMen: +averageMen.toFixed(2),
         AverageWomen: +averageWomen.toFixed(2)
-
-
-
     }
 }
 const setStatisticsData = (info) => {
@@ -96,19 +104,19 @@ const setStatisticsData = (info) => {
                 statisticsCells[j].nextSibling.innerText = info.OrderCount;
             }
             if (statisticsCells[j].dataset.statisticsType == 'Orders Total') {
-                statisticsCells[j].nextSibling.innerText = `$${info.OrdersTotal}`;
+                statisticsCells[j].nextSibling.innerText = `$ ${info.OrdersTotal}`;
             }
             if (statisticsCells[j].dataset.statisticsType == 'Median Value') {
-                statisticsCells[j].nextSibling.innerText = `$${info.Median}`;
+                statisticsCells[j].nextSibling.innerText = `$ ${info.Median}`;
             }
             if (statisticsCells[j].dataset.statisticsType == 'Average Check') {
-                statisticsCells[j].nextSibling.innerText = `$${info.AverageAmount}`;
+                statisticsCells[j].nextSibling.innerText = `$ ${info.AverageAmount}`;
             }
             if (statisticsCells[j].dataset.statisticsType == 'Average Check (Female)') {
-                statisticsCells[j].nextSibling.innerText = `$${info.AverageWomen}`;
+                statisticsCells[j].nextSibling.innerText = `$ ${info.AverageWomen}`;
             }
             if (statisticsCells[j].dataset.statisticsType == 'Average Check (Male)') {
-                statisticsCells[j].nextSibling.innerText = `$${info.AverageMen}`;
+                statisticsCells[j].nextSibling.innerText = `$ ${info.AverageMen}`;
             }
         }
     }
@@ -120,3 +128,4 @@ const getStatistics = () => {
     setStatisticsData(getStatisticsData());
 }
 export default getStatistics;
+export { setStatisticsData, getStatisticsData };
